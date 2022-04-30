@@ -7,7 +7,7 @@ public class MyThread implements Runnable {
     }
 
     public static void main(String[] args) {
-        Thread thread = new Thread(new MyThread());
+        var thread = new Thread(new MyThread());
         thread.start();
         System.out.println("(thread instanceof Runnable) = " + (thread instanceof Runnable));
         System.out.println("(thread instanceof Thread) = " + (thread instanceof Thread));

@@ -16,13 +16,13 @@ public class ThreadClass implements Runnable {
     }
 
     public static void main(String[] args) {
-        Thread firstThread = new Thread(new ThreadClass(), "First Thread");
-        Thread secondThread = new Thread(new ThreadClass());
+        var firstThread = new Thread(new ThreadClass(), "First Thread");
+        var secondThread = new Thread(new ThreadClass());
         secondThread.setName("Second Thread");
 
         firstThread.start();
         secondThread.start();
-        //Datazo: no podemos iniciar (start) un thread más de una vez, ya que no se puede crear un mismo thread dos veces
+        //Datazo: no podemos iniciar (start) un thread más de una vez, no se puede crear un mismo thread dos veces
         //Sin embargo, podemos llamar a su método run() más de una vez ya que este se ejecutará en un thread default "main"
         firstThread.run();
     }

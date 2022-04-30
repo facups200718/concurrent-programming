@@ -14,10 +14,10 @@ public class AnotherThreadClass implements Runnable {
             System.out.println(threadName + " says: " + i);
         }
     }
-
+    
     public static void main(String[] args) {
-        Thread firstThread = new Thread(new ThreadClass());
-        Thread secondThread = new Thread(new ThreadClass());
+        var firstThread = new Thread(new ThreadClass());
+        var secondThread = new Thread(new ThreadClass());
 
         firstThread.run();
         secondThread.run();

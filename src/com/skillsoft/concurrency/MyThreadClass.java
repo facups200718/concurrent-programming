@@ -7,7 +7,7 @@ public class MyThreadClass extends Thread {
     }
 
     public static void main(String[] args) {
-        MyThreadClass myThread = new MyThreadClass();
+        var myThread = new MyThreadClass();
         myThread.start();
         System.out.println("(thread instanceof Runnable) = " + (myThread instanceof Runnable));
         System.out.println("(thread instanceof Thread) = " + (myThread instanceof Thread));
