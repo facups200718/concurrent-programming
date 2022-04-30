@@ -31,7 +31,7 @@ public class ThreadLifeCycleWait {
 
     public static void main(String[] args) {
         var walkThread = new Thread(new ThreadLifeCycle.Walk());
-        var chewThread = new Thread(new ThreadLifeCycle.ChewGum());;
+        var chewThread = new Thread(new ThreadLifeCycle.ChewGum());
 
         try {
             walkThread.start();

@@ -15,7 +15,7 @@ public class ThreadLifeCycle {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println("I'm walking...");
+                System.out.println("I'm walking... My state is " + Thread.currentThread().getState());
             }
         }
     }
@@ -37,13 +37,15 @@ public class ThreadLifeCycle {
     public static void main(String[] args) throws InterruptedException {
         var walkThread = new Thread(new Walk());
         var chewThread = new Thread(new ChewGum());;
-
+        System.out.println("State of walk thread after initializing: " + walkThread.getState());
         try {
             walkThread.start();
             //El metodo join del main thread dice basicamente que se espere a que se termine
             //el thread walkThread para continuar con cualquier otra ejecucion
             //En caso de que sea interrumpido este proceso de espera, InterruptedException
+            System.out.println("State of walk thread after start: " + walkThread.getState());
             walkThread.join();
+            System.out.println("State of walk thread after join: " + walkThread.getState());
             chewThread.start();
         } catch (InterruptedException e) {
             e.printStackTrace();
