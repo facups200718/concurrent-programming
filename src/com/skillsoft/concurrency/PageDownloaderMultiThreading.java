@@ -17,6 +17,11 @@ public class PageDownloaderMultiThreading implements Runnable {
     public void run() {
         try {
             for (String urlString: urlsList) {
+                //Este codigo es por si queremos interrumpir el thread sin que esté en sleep
+                if (Thread.currentThread().isInterrupted()) {
+                    throw new InterruptedException(Thread.currentThread().getName() + " interrupted");
+                }
+
                 URL url = new URL(urlString);
                 var filename = urlString.substring(urlString.lastIndexOf("/" )+ 1).trim() + ".html";
                 var reader = new BufferedReader(new InputStreamReader(url.openStream()));
@@ -30,6 +35,7 @@ public class PageDownloaderMultiThreading implements Runnable {
                 System.out.println("Page downloaded to " + filename);
 
                 writer.close();
+                //Thread.sleep(4000);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -63,8 +69,9 @@ public class PageDownloaderMultiThreading implements Runnable {
             downloaderThree.start();
             downloaderFour.start();
 
-            downloaderOne.join();
-            downloaderTwo.join();
+            Thread.sleep(4000);
+            downloaderOne.interrupt();
+            downloaderTwo.interrupt();
             downloaderThree.join();
             downloaderFour.join();
             long endTime = System.currentTimeMillis();
