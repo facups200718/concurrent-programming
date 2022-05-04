@@ -10,7 +10,7 @@ import java.net.URL;
 import java.util.Arrays;
 
 @AllArgsConstructor
-public class PageDownloader implements Runnable {
+public class PageDownloaderMultiThreading implements Runnable {
     String[] urlsList;
 
     @Override
@@ -51,14 +51,22 @@ public class PageDownloader implements Runnable {
                 "https://www.skillsoft.com/skillsoft-support-success-and-services"
         };
 
-        var downloaderOne = new Thread(new PageDownloader(
-                Arrays.copyOfRange(urls, 0, urls.length)
-        ));
+        var downloaderOne = new Thread(new PageDownloaderMultiThreading(Arrays.copyOfRange(urls, 0, 3)));
+        var downloaderTwo = new Thread(new PageDownloaderMultiThreading(Arrays.copyOfRange(urls, 3, 6)));
+        var downloaderThree = new Thread(new PageDownloaderMultiThreading(Arrays.copyOfRange(urls, 6, 9)));
+        var downloaderFour = new Thread(new PageDownloaderMultiThreading(Arrays.copyOfRange(urls, 9, urls.length)));
 
         try {
             long startTime = System.currentTimeMillis();
             downloaderOne.start();
+            downloaderTwo.start();
+            downloaderThree.start();
+            downloaderFour.start();
+
             downloaderOne.join();
+            downloaderTwo.join();
+            downloaderThree.join();
+            downloaderFour.join();
             long endTime = System.currentTimeMillis();
 
             System.out.println("Total time taken: " + (endTime - startTime) / 1000 + "s");
