@@ -33,8 +33,10 @@ public class ThreadMethods {
         var walkThread = new Thread(new Walk());
         var chewThread = new Thread(new ChewGum());
 
-        walkThread.start();
-        chewThread.start();
+        walkThread.setPriority(9);
+        chewThread.setPriority(2);
+
+        /*
 
         System.out.println("\nwalkThread.getId() = " + walkThread.getId());
         System.out.println("chewThread.getId() = " + chewThread.getId());
@@ -47,12 +49,14 @@ public class ThreadMethods {
         System.out.println("\nwalkThread.getThreadGroup() = " + walkThread.getThreadGroup());
         System.out.println("chewThread.getThreadGroup() = " + chewThread.getThreadGroup());
         System.out.println("Thread.currentThread().getThreadGroup() = " + Thread.currentThread().getThreadGroup());
-
+        */
         System.out.println("\nwalkThread.getPriority() = " + walkThread.getPriority());
         System.out.println("chewThread.getPriority() = " + chewThread.getPriority());
         System.out.println("Thread.currentThread().getPriority() = " + Thread.currentThread().getPriority());
 
-        System.out.println("#Thread.activeCount() = " + Thread.activeCount());
+        walkThread.start();
+        chewThread.start();
+        //System.out.println("#Thread.activeCount() = " + Thread.activeCount());
         System.out.println("\n\n");
     }
 }
